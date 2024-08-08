@@ -1,0 +1,17 @@
+{
+    "filename": "2.pd",
+    "objects": [
+        {
+            "type": "osc~",
+            "parameters": "440",
+            "X": "50",
+            "Y": "50"
+        },
+        {
+            "type": "dac~",
+            "parameters": "",
+            "X": "50",
+            "Y": "150"
+        }
+    ]
+}
