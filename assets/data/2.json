@@ -1,0 +1,23 @@
+{
+    "filename": "2.pd",
+    "objects": [
+        {
+            "type": "<_io.textiowrapper name='./pd\\\\2.pd' mode='r' encoding='cp1252'>"
+        },
+        {
+            "type": "osc~",
+            "parameters": "440",
+            "X": "50",
+            "Y": "50"
+        },
+        {
+            "type": "<_io.textiowrapper name='./pd\\\\2.pd' mode='r' encoding='cp1252'>"
+        },
+        {
+            "type": "dac~",
+            "parameters": "",
+            "X": "50",
+            "Y": "150"
+        }
+    ]
+}
