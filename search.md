@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Arquivos PD Processados
+permalink: /search/
 ---
 
 <h2>Arquivos PD disponíveis:</h2>
