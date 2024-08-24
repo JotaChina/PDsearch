@@ -2,10 +2,16 @@
     "filename": "1.pd",
     "objects": [
         {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
+        },
+        {
             "type": "+",
             "parameters": "200",
             "X": "84",
             "Y": "44"
+        },
+        {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
         },
         {
             "type": "*",
@@ -14,10 +20,16 @@
             "Y": "97"
         },
         {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
+        },
+        {
             "type": "*",
             "parameters": "2",
             "X": "98",
             "Y": "98"
+        },
+        {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
         },
         {
             "type": "*",
@@ -26,10 +38,16 @@
             "Y": "100"
         },
         {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
+        },
+        {
             "type": "osc~",
             "parameters": "660",
             "X": "3",
             "Y": "149"
+        },
+        {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
         },
         {
             "type": "osc~",
@@ -38,10 +56,16 @@
             "Y": "150"
         },
         {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
+        },
+        {
             "type": "osc~",
             "parameters": "711",
             "X": "182",
             "Y": "152"
+        },
+        {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
         },
         {
             "type": "osc~",
@@ -50,10 +74,16 @@
             "Y": "152"
         },
         {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
+        },
+        {
             "type": "+~",
             "parameters": "",
             "X": "169",
             "Y": "197"
+        },
+        {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
         },
         {
             "type": "+~",
@@ -62,10 +92,16 @@
             "Y": "227"
         },
         {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
+        },
+        {
             "type": "+~",
             "parameters": "",
             "X": "170",
             "Y": "253"
+        },
+        {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
         },
         {
             "type": "dac~",
@@ -74,10 +110,16 @@
             "Y": "279"
         },
         {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
+        },
+        {
             "type": "receive",
             "parameters": "from gui",
             "X": "448",
             "Y": "8"
+        },
+        {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
         },
         {
             "type": "route",
@@ -85,6 +127,9 @@
             "plug_0": "list",
             "X": "470",
             "Y": "37"
+        },
+        {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
         },
         {
             "type": "route",
@@ -122,6 +167,9 @@
             "Y": "69"
         },
         {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
+        },
+        {
             "type": "route",
             "parameters": "0",
             "plug_0": "0",
@@ -136,10 +184,16 @@
             "Y": "93"
         },
         {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
+        },
+        {
             "type": "bng",
             "parameters": "19 250 50 0 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000",
             "X": "455",
             "Y": "126"
+        },
+        {
+            "type": "<_io.textiowrapper name='./pd/1.pd' mode='r' encoding='utf-8'>"
         },
         {
             "type": "line~",

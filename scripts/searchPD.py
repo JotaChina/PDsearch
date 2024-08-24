@@ -28,50 +28,71 @@ def index_instruments(data):
                 instrument_projects[instrument_type][filename].append(obj)
     return instrument_projects
 
-def search_instruments(instrument_projects, search_term):
-    results = defaultdict(lambda: defaultdict(list))
-    search_parts = search_term.split()
+def generate_html_for_project(project, output_dir):
+    filename = project['filename']
+    configs = project['objects']
     
-    if not search_parts:
-        return results
-
-    search_type = search_parts[0]
-    search_params = ' '.join(search_parts[1:]).strip()
-
-    for instrument, projects in instrument_projects.items():
-        # Se o tipo de busca é 'route' e estamos buscando todos os itens com esse tipo
-        if search_type == "route":
-            for project, configs in projects.items():
-                for config in configs:
-                    if config['type'] == "route":
-                        results[instrument][project].append(config)
-        # Caso contrário 
-        elif search_type == instrument or search_params == instrument:
-            for project, configs in projects.items():
-                for config in configs:
-                    if search_params in config['parameters']:
-                        results[instrument][project].append(config)
-
-    return results
+    project_html = f"""
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{filename}</title>
+        <style>
+            body {{ font-family: Arial, sans-serif; }}
+            table {{ width: 100%; border-collapse: collapse; }}
+            table, th, td {{ border: 1px solid black; }}
+            th, td {{ padding: 8px; text-align: left; }}
+        </style>
+    </head>
+    <body>
+        <h1>Projeto: {filename}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>Parâmetros</th>
+                </tr>
+            </thead>
+            <tbody>
+    """
+    
+    for config in configs:
+        parameters = config.get('parameters', 'N/A')
+        project_html += f"""
+            <tr>
+                <td>{config['type']}</td>
+                <td>{config.get('X', 'N/A')}</td>
+                <td>{config.get('Y', 'N/A')}</td>
+                <td>{parameters}</td>
+            </tr>
+        """
+    
+    project_html += """
+            </tbody>
+        </table>
+    </body>
+    </html>
+    """
+    
+    output_file = os.path.join(output_dir, f"{filename[0]}.html")
+    with open(output_file, 'w') as file:
+        file.write(project_html)
 
 def main():
-    directory_path = './_metadata' 
+    directory_path = './_data'
+    output_dir = './output_pages'
+    os.makedirs(output_dir, exist_ok=True)
+    
     data = load_json_files(directory_path)
-    instrument_projects = index_instruments(data)
-
-    search_term = input("Digite o tipo e parâmetros para buscar (ex: route /myButton): ").strip()
-    results = search_instruments(instrument_projects, search_term)
-
-    if results:
-        print("Instrumentos encontrados:")
-        for instrument, projects in results.items():
-            print(f"Tipo: {instrument}")
-            for project, configs in projects.items():
-                print(f"  Projeto: {project}")
-                for config in configs:
-                    print(f"    {config['type']} X: {config['X']} Y: {config['Y']}")
-    else:
-        print("Nenhum projeto encontrado com o termo de busca fornecido.")
+    
+    for project in data:
+        generate_html_for_project(project, output_dir)
+    
+    print(f"Páginas HTML geradas no diretório '{output_dir}'.")
 
 if __name__ == "__main__":
     main()
