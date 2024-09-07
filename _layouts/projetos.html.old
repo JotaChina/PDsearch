@@ -1,0 +1,142 @@
+---
+layout: default
+title: {{page.filename}}
+---
+
+<div class="publication">
+    <div class="pub-header">
+        <style>
+            .header-title {
+                color: black;
+                font-size: 24pt;
+                text-align: center;
+                margin: 20px 0;
+            }
+
+            .container {
+                display: flex;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .table-container {
+                width: 50%;
+                overflow: auto;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                text-align: center;
+            }
+
+            th, td {
+                padding: 10px;
+                border: 1px solid #ddd;
+                text-align: center;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+   	   .image-container {
+	        position: relative;
+       	        overflow: hidden;
+	        cursor: grab;
+	        width: 70%; 
+	        height: 70%; 
+	   }
+
+	   #zoom-image {
+	        position: absolute;
+	        top: 50%;
+	        left: 50%;
+	        transform-origin: 0 0;
+	   }	
+        </style>
+        <h1 class="header-title">Arquivo: {{ page.filename }}</h1>
+    </div>
+    <div class="container">
+        <div class="table-container">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>X</th>
+                        <th>Y</th>
+                        <th>Parâmetros</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% assign objects = page.objects %}
+                  {% for obj in objects %}
+                  <tr>
+                    <td>{{ obj.type }}</td>
+                    <td>{{ obj.X | default: 'N/A' }}</td>
+                    <td>{{ obj.Y | default: 'N/A' }}</td>
+                    <td>{{ obj.parameters | default: '-' }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="image-container" id="image-container">
+            <img id="zoom-image" src="../PD/SVG/{{ page.filename | split: '.' | first }}.svg" alt="PROJETO {{ page.filename }}">
+        </div>
+    </div>
+<script>
+  const image = document.getElementById('zoom-image');
+  const container = document.getElementById('image-container');
+  let scale = 1;
+  let isDragging = false;
+  let startX, startY, initialX, initialY;
+
+  container.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    const delta = event.deltaY > 0 ? 0.9 : 1.1;
+    scale *= delta;
+    scale = Math.min(Math.max(1, scale), 10); // Limita o zoom entre 1x e 10x
+    updateTransform();
+  });
+
+  container.addEventListener('mousedown', (event) => {
+    event.preventDefault();
+    isDragging = true;
+    initialX = event.clientX - (parseFloat(image.style.left) || 0);
+    initialY = event.clientY - (parseFloat(image.style.top) || 0);
+    container.style.cursor = 'grabbing';
+  });
+
+  container.addEventListener('mousemove', (event) => {
+    if (isDragging) {
+      const dx = event.clientX - initialX;
+      const dy = event.clientY - initialY;
+      image.style.left = `${dx}px`;
+      image.style.top = `${dy}px`;
+    }
+  });
+
+  container.addEventListener('mouseup', () => {
+    isDragging = false;
+    container.style.cursor = 'grab';
+  });
+
+  container.addEventListener('mouseleave', () => {
+    isDragging = false;
+    container.style.cursor = 'grab';
+  });
+
+  function updateTransform() {
+    image.style.transform = `translate(-50%, -50%) scale(${scale})`;
+  }
+
+  // Ajusta o tamanho da imagem quando a janela é redimensionada
+  window.addEventListener('resize', updateTransform);
+  updateTransform(); // Inicializa a transformação
+</script>
+
+
+</div>

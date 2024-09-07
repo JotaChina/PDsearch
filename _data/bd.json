@@ -1,0 +1,170 @@
+[
+    {
+        "filename": "1.pd",
+        "objects": [
+            {
+                "type": "+",
+                "parameters": "200",
+                "X": "84",
+                "Y": "44"
+            },
+            {
+                "type": "*",
+                "parameters": "1.5",
+                "X": "18",
+                "Y": "97"
+            },
+            {
+                "type": "*",
+                "parameters": "2",
+                "X": "98",
+                "Y": "98"
+            },
+            {
+                "type": "*",
+                "parameters": "1.616",
+                "X": "164",
+                "Y": "100"
+            },
+            {
+                "type": "osc~",
+                "parameters": "660",
+                "X": "3",
+                "Y": "149"
+            },
+            {
+                "type": "osc~",
+                "parameters": "880",
+                "X": "92",
+                "Y": "150"
+            },
+            {
+                "type": "osc~",
+                "parameters": "711",
+                "X": "182",
+                "Y": "152"
+            },
+            {
+                "type": "osc~",
+                "parameters": "440",
+                "X": "260",
+                "Y": "152"
+            },
+            {
+                "type": "+~",
+                "parameters": "",
+                "X": "169",
+                "Y": "197"
+            },
+            {
+                "type": "+~",
+                "parameters": "",
+                "X": "169",
+                "Y": "227"
+            },
+            {
+                "type": "+~",
+                "parameters": "",
+                "X": "170",
+                "Y": "253"
+            },
+            {
+                "type": "dac~",
+                "parameters": "",
+                "X": "166",
+                "Y": "279"
+            },
+            {
+                "type": "receive",
+                "parameters": "from gui",
+                "X": "448",
+                "Y": "8"
+            },
+            {
+                "type": "route",
+                "parameters": "list",
+                "plug_0": "list",
+                "X": "470",
+                "Y": "37"
+            },
+            {
+                "type": "route",
+                "parameters": "/mybutton",
+                "plug_0": "/mybutton",
+                "X": "455",
+                "Y": "69"
+            },
+            {
+                "type": "route",
+                "parameters": "/freq",
+                "plug_1": "/freq",
+                "X": "455",
+                "Y": "69"
+            },
+            {
+                "type": "route",
+                "parameters": "/gain",
+                "plug_2": "/gain",
+                "X": "455",
+                "Y": "69"
+            },
+            {
+                "type": "route",
+                "parameters": "/metro",
+                "plug_3": "/metro",
+                "X": "455",
+                "Y": "69"
+            },
+            {
+                "type": "route",
+                "parameters": "/tempo",
+                "plug_4": "/tempo",
+                "X": "455",
+                "Y": "69"
+            },
+            {
+                "type": "route",
+                "parameters": "0",
+                "plug_0": "0",
+                "X": "455",
+                "Y": "93"
+            },
+            {
+                "type": "route",
+                "parameters": "1",
+                "plug_1": "1",
+                "X": "455",
+                "Y": "93"
+            },
+            {
+                "type": "bng",
+                "parameters": "19 250 50 0 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000",
+                "X": "455",
+                "Y": "126"
+            },
+            {
+                "type": "line~",
+                "parameters": "",
+                "X": "393",
+                "Y": "196"
+            }
+        ]
+    },
+    {
+        "filename": "2.pd",
+        "objects": [
+            {
+                "type": "osc~",
+                "parameters": "440",
+                "X": "50",
+                "Y": "50"
+            },
+            {
+                "type": "dac~",
+                "parameters": "",
+                "X": "50",
+                "Y": "150"
+            }
+        ]
+    }
+]

@@ -1,0 +1,8 @@
+<ul id="page-list">
+    {% for page in site.pages %}
+        {% if page.url contains '/output_pages/' %}
+            <li><a href="{{ page.url }}">{{ page.title | default: page.name }}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>
+

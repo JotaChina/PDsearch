@@ -1,0 +1,47 @@
+---
+layout: default
+title: {{ page.filename }}
+---
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ '/assets/css/projetos.css' | relative_url }}">
+  <script src="{{ site.baseurl }}/assets/js/image-projetos.js"></script>
+  <script src="{{ site.baseurl }}/assets/js/circle-projetos.js"></script>
+</head>
+
+<div class="publication">
+    <div class="pub-header">
+        <h1 class="header-title">Arquivo: {{ page.filename }}</h1>
+    </div>
+    <div class="container">
+        <div class="table-container">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>X</th>
+                        <th>Y</th>
+                        <th>Parâmetros</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% assign objects = page.objects %}
+                    {% for obj in objects %}
+                    <tr data-x="{{ obj.X }}" data-y="{{ obj.Y }}" data-type="{{ obj.type }}" class="clickable-row">
+                        <td class="type-cell">{{ obj.type }}</td>
+                        <td>{{ obj.X | default: 'N/A' }}</td>
+                        <td>{{ obj.Y | default: 'N/A' }}</td>
+                        <td>{{ obj.parameters | default: '-' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="image-container" id="image-container">
+            <img id="zoom-image" src="../PD/SVG/{{ page.filename | split: '.' | first }}.svg" alt="PROJETO {{ page.filename }}">
+        </div>
+    </div>
+</div>
+<script>
+  window.svgUrl = "{{ '/PD/SVG/' | append: page.filename | split: '.' | first | append: '.svg' | relative_url }}";
+</script>
