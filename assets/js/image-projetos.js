@@ -13,18 +13,51 @@ document.addEventListener('DOMContentLoaded', () => {
     let startX = 0, startY = 0;
     let initialX = 0, initialY = 0;
 
-    // Calcula o fator de zoom inicial para ajustar a imagem ao contêiner
     function calculateInitialZoom() {
         const containerRect = container.getBoundingClientRect();
-        const imageRect = image.getBoundingClientRect();
-        const scaleX = containerRect.width / imageRect.width;
-        const scaleY = containerRect.height / imageRect.height;
-        scale = Math.min(scaleX, scaleY);
+
+        if (image.tagName.toLowerCase() === 'svg') {
+            const svgBBox = image.getBBox(); // Obtém a caixa delimitadora do SVG
+            const svgWidth = svgBBox.width;
+            const svgHeight = svgBBox.height;
+            const svgX = svgBBox.x;
+            const svgY = svgBBox.y;
+
+            // Calcula o centroide do SVG
+            const centerX = svgX + svgWidth / 2;
+            const centerY = svgY + svgHeight / 2;
+	    
+            // Calcula a escala para ajustar o SVG ao contêiner
+            const scaleX = containerRect.width / svgWidth;
+            const scaleY = containerRect.height / svgHeight;
+            scale = Math.min(scaleX, scaleY);
+
+            // Calcula o deslocamento para centralizar o SVG no contêiner
+            initialX = (containerRect.width - svgWidth * scale) / 2 - (centerX * scale - containerRect.left);
+            initialY = (containerRect.height - svgHeight * scale) / 2 - (centerY * scale - containerRect.top);
+
+        } else {
+            // Caso não seja SVG, usa a caixa delimitadora da imagem
+            const imageRect = image.getBoundingClientRect();
+            const imageWidth = imageRect.width;
+            const imageHeight = imageRect.height;
+
+            // Calcula a escala para ajustar a imagem ao contêiner
+            const scaleX = containerRect.width / imageWidth;
+            const scaleY = containerRect.height / imageHeight;
+            scale = Math.min(scaleX, scaleY);
+
+            // Centraliza a imagem no contêiner
+            initialX = (containerRect.width - imageWidth * scale) / 2 - (imageRect.left - containerRect.left) * scale;
+            initialY = (containerRect.height - imageHeight * scale) / 2 - (imageRect.top - containerRect.top) * scale;
+        }
+
         updateTransform();
     }
 
     function updateTransform() {
         image.style.transform = `translate(${initialX}px, ${initialY}px) scale(${scale})`;
+        image.style.transformOrigin = '0 0'; // Define a origem da transformação para o canto superior esquerdo
     }
 
     function logImageDimensions() {
